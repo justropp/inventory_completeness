@@ -4,7 +4,7 @@ This document presents the R code used to calculate indicators of inventory comp
 
 Calculate sample coverage (Chao and Jost, 2012): number of singletons and doubletons.<br/>R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
-## Sample coverage
+## Sample coverage using number of unique sampling events
 ```
 SampCovComplet_speciesName <- function(matriz)
     {
