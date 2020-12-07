@@ -58,7 +58,7 @@ ChaoJost_SampEvent <- function(matriz)
 }
 
 ```
-# Inventory completeness based on Chao1 using sampling events
+### Inventory completeness based on Chao1 using sampling events
 
 ```
 Chao1_SampEvent <- function(matriz)
