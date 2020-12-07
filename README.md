@@ -1,8 +1,7 @@
 # Indicators of inventory completeness for global biodiversity databases
-This document presents the code used to calculate indicators of inventory completeness presented in Stropp et al. (in prep.).
+This document presents the R code used to calculate indicators of inventory completeness presented in Stropp et al. (in prep.).
 
-Calculate sample coverage (Chao and Jost, 2012): number of singletons and doubletons. 
-R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
+Calculate sample coverage (Chao and Jost, 2012): number of singletons and doubletons.<br/>R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
 ## Sample coverage
 ```
