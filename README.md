@@ -1,17 +1,21 @@
 # Indicators of inventory completeness for global biodiversity databases
 Juliana Stropp<br/>
+
 This document presents the R code used to calculate indicators of inventory completeness presented in Stropp et al. (in prep.).<br/>
 
 R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
 ### Sample coverage (Chao and Jost, 2012) using number of unique sampling events
 ```
-SampCovComplet_speciesName <- function(matriz)
+ChaoJost_SampEvent <- function(matriz)
     {
   # Determine species unique sampling events
   unic <- unique(matriz[,c(4,5,6,7,8)])
   
   # Define groups to calculate completeness: cell_id, synth_com, sampling_intensity
+  #unic[,5] <- cut(unic[,3], breaks = seq(-80, 85, 5))
+  #lev <- levels(unic[,5])
+  #unic[,5]<-matriz[,c(1,2,3)]
   lev <-unique(matriz[,8])
 
   # Calculate level of completeness
@@ -50,6 +54,7 @@ SampCovComplet_speciesName <- function(matriz)
       }
     }
   }
-  return(k)
+    return(k)
 }
+
 ```
