@@ -2,8 +2,9 @@
 This document presents the code used to calculate indicators of inventory completeness presented in Stropp et al. (in prep.).
 
 Calculate sample coverage (Chao and Jost, 2012): number of singletons and doubletons. 
-Adapted from: https://github.com/AndreMenegotto/SpatialGaps
+R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
+## Sample coverage
 ```
 SampCovComplet_speciesName <- function(matriz)
     {
