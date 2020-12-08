@@ -35,7 +35,11 @@ cc8<-Chao2adj_SEvent(matriz = t500_spp) # This works
 cc9<-Chao1_spName (t500_spp) # Not working
 cc10<-Chao1_SEvent (t500_spp) # This works
 ```
-
+#### 4. Sample coverage (Chao and Jost, 2012)
+````
+cc11<-ChaoJost_spName(t500_spp) #Not working
+cc12<-ChaoJost_SEvent(t500_spp) # This works
+````
 ```
 # NOT WORKING:
 SACcomplet_SEvent_MM <- function(matriz)
