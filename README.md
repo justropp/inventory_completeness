@@ -7,8 +7,6 @@ R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
 ## Slope-based indicators
 ### Slope of species accumulation curves fitted with a Clench function: not working
-
-
 ```
 # NOT WORKING:
 SACcomplet_Sevent_MM <- function(matriz)
@@ -95,3 +93,4 @@ SACcomplet_Sevent_MM <- function(matriz)
 }
 
 ```
+### Slope of species accumulation curves fitted with a methods "exact" for "species names only": not working
