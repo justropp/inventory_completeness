@@ -6,12 +6,12 @@ This document presents the R code used to calculate indicators of inventory comp
 R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
 ## Slope-based indicators
-### 1. Slope of species accumulation curves fitted with a Clench function
+#### 1. Slope of species accumulation curves fitted with a Clench function
 ````
 cc1<-SACcomplet_SpName_MM(matriz = t500_sp) # Not working!
 cc2<-SACcomplet_SEvent_MM(matriz = t500_sp) # Not working!
 ````
-### 2. Slope of species accumulation curves fitted with a methods "exact"
+#### 2. Slope of species accumulation curves fitted with a methods "exact"
 
 ```
 cc3<-SACcomplet_spName(matriz = t500_sp) # Not working!
@@ -19,7 +19,7 @@ cc4<-SACcomplet_SEvent(matriz = t500_sp) # This works
 hist(cc4)
 ```
 ## Abundance-based indicators
-### 1. Chao2
+#### 1. Chao2
 
 ````
 cc5<-Chao2_spName(matriz = t500_sp) # Not working!
