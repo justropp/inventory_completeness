@@ -11,7 +11,7 @@ R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 cc1<-SACcomplet_SpName_MM(matriz = t500_sp) # Not working!
 cc2<-SACcomplet_SEvent_MM(matriz = t500_sp) # Not working!
 ````
-#### 2. Slope of species accumulation curves fitted with a methods "exact"
+#### 2. Slope of species accumulation curves fitted the method "exact"
 
 ```
 cc3<-SACcomplet_spName(matriz = t500_sp) # Not working!
