@@ -6,7 +6,7 @@ This document presents the R code used to calculate indicators of inventory comp
 R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
 ## Slope-based indicators
-### Slope of species accumulation curves fitted with a Clench function: not working
+### Slope of species accumulation curves fitted with a Clench function: <style="color:red"> not working
 
 
 ```
