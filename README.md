@@ -7,9 +7,21 @@ R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
 ## Slope-based indicators
 ### Slope of species accumulation curves fitted with a Clench function: not working
+````
+cc1<-SACcomplet_SpName_MM(data = t500_sp) # Not working!
+cc2<-SACcomplet_SEvent_MM(data = t500_sp) # Not working!
+````
+### Slope of species accumulation curves fitted with a methods "exact"
+
 ```
+cc3<-SACcomplet_spName(data = t500_sp) # Not working!
+cc4<-SACcomplet_spName(data = t500_sp) # This works
+hist(cc4)
+```
+
+
 # NOT WORKING:
-SACcomplet_Sevent_MM <- function(matriz)
+SACcomplet_SEvent_MM <- function(matriz)
 {
   require('reshape')
   require('vegan')
