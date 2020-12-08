@@ -19,7 +19,7 @@ cc4<-SACcomplet_spName(data = t500_sp) # This works
 hist(cc4)
 ```
 
-
+````
 # NOT WORKING:
 SACcomplet_SEvent_MM <- function(matriz)
 {
