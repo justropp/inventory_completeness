@@ -6,18 +6,24 @@ This document presents the R code used to calculate indicators of inventory comp
 R functions were adapted from: https://github.com/AndreMenegotto/SpatialGaps
 
 ## Slope-based indicators
-### Slope of species accumulation curves fitted with a Clench function: not working
+### 1. Slope of species accumulation curves fitted with a Clench function
 ````
-cc1<-SACcomplet_SpName_MM(data = t500_sp) # Not working!
-cc2<-SACcomplet_SEvent_MM(data = t500_sp) # Not working!
+cc1<-SACcomplet_SpName_MM(matriz = t500_sp) # Not working!
+cc2<-SACcomplet_SEvent_MM(matriz = t500_sp) # Not working!
 ````
-### Slope of species accumulation curves fitted with a methods "exact"
+### 2. Slope of species accumulation curves fitted with a methods "exact"
 
 ```
-cc3<-SACcomplet_spName(data = t500_sp) # Not working!
-cc4<-SACcomplet_SEvent(data = t500_sp) # This works
+cc3<-SACcomplet_spName(matriz = t500_sp) # Not working!
+cc4<-SACcomplet_SEvent(matriz = t500_sp) # This works
 hist(cc4)
 ```
+## Abundance-based indicators
+### 1. Chao2
+
+````
+cc5<-Chao2_spName(matriz = t500_sp) # Not working!
+cc6<-Chao2_SampEvent(
 
 ````
 # NOT WORKING:
@@ -105,4 +111,90 @@ SACcomplet_SEvent_MM <- function(matriz)
 }
 
 ```
-### Slope of species accumulation curves fitted with a methods "exact" for "species names only": not working
+Slope - method "exact"; using sampling events
+
+````
+SACcomplet_SEvent <- function(matriz)
+{
+  require('reshape')
+  require('vegan')
+  
+  # Select unique observation for each species for each group (cell_id and sampling_intensity)
+  unic <- unique(matriz[,c(4,5,6,7,8)])
+  
+  # Define groups to calculate completeness: cell_id, synth_com, sampling_intensity
+  lev <-unique(matriz[,8])
+  
+  # Progress bar (this process may be time-consuming)
+  pb <- txtProgressBar(min = 0, max = length(lev), style = 3)
+  
+  # Start to calculate inventory completeness
+  r <- numeric()
+  
+  # For each latitudinal band:
+  for(i in 1:length(lev))
+  {
+    # Find all records
+    rec <- which(unic[,5]==lev[i])
+    
+    if(length(rec)==0)
+    {
+      r[i] <- NA
+    }
+    else
+    {
+      # Create a submatrix with data in each group
+      tempMat <- unic[rec,]
+      tempMat2 <- cbind(tempMat[,1:4], count=rep(1, nrow(tempMat)))
+      
+      # Transform the submatrix in a community matrix
+      CommMat <- cast(tempMat2, latitude + longitude + date_collected ~ species_untb, value = "count")
+      CommMat2 <- as.data.frame(CommMat)
+      CommMat3 <- CommMat2[,-c(1,2,3)]
+      CommMat3 <- as.matrix(CommMat3)
+      CommMat3[which(is.na(CommMat3))] <- 0
+      
+      # Completeness was not calculated when less than 40 sampling events 
+      # is recorded in a cell. For such cases only three points would be used 
+      # in the regression to extract mean slope of the last 10% of SACs
+      if(nrow(CommMat3) < 40)
+      {
+        r[i] <- NA
+      }
+      else
+      {
+        # Calculate species accumulation
+        sp1 <- specaccum(CommMat3, method = "exact")
+        
+        # Extract the last 10%
+        x <- quantile(sp1$richness, probs = c(0.9))
+        Lten <- which(sp1$richness >= x)
+        vec <- sp1$richness[Lten]
+        
+        # Result (1 - regression slope)
+        slope <- 1-lm(vec~seq(1,length(vec),1))[[1]][[2]]
+        
+        if(is.na(slope))
+        {
+          r[i] <- NA
+        }
+        else
+        {
+          if(slope >= 0)
+          {
+            r[i] <- slope
+          }
+          else
+          {
+            # A rapid increase of new species may create negative completeness (slope higher than 1) and we considered as zero
+            r[i] <- 0
+          }
+        }
+      }
+    }
+    setTxtProgressBar(pb, i)
+  }  
+  return(r)
+}
+````
+
