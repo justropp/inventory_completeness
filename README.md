@@ -21,11 +21,11 @@ hist(cc4)
 ## Abundance-based indicators
 #### 1. Chao2
 
-````
+```
 cc5<-Chao2_spName(matriz = t500_sp) # Not working!
-cc6<-Chao2_SampEvent(
-
-````
+cc6<-Chao2_SampEvent(matriz = t500_sp) # This works
+```
+```
 # NOT WORKING:
 SACcomplet_SEvent_MM <- function(matriz)
 {
@@ -111,9 +111,16 @@ SACcomplet_SEvent_MM <- function(matriz)
 }
 
 ```
+Slope - method "exact"; using species name only
+````
+# NOT WORKING
+
+````
+
 Slope - method "exact"; using sampling events
 
 ````
+# This works
 SACcomplet_SEvent <- function(matriz)
 {
   require('reshape')
