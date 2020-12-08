@@ -15,7 +15,7 @@ cc2<-SACcomplet_SEvent_MM(data = t500_sp) # Not working!
 
 ```
 cc3<-SACcomplet_spName(data = t500_sp) # Not working!
-cc4<-SACcomplet_spName(data = t500_sp) # This works
+cc4<-SACcomplet_SEvent(data = t500_sp) # This works
 hist(cc4)
 ```
 
