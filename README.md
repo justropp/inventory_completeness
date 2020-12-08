@@ -25,6 +25,17 @@ hist(cc4)
 cc5<-Chao2_spName(matriz = t500_sp) # Not working!
 cc6<-Chao2_SampEvent(matriz = t500_sp) # This works
 ```
+#### 2. Chao2, with its adjustment for small sample sizes
+```
+cc7<-Chao2adj_spName(matriz = t500_sp) # Not working!
+cc8<-Chao2adj_SEvent(matriz = t500_spp) # This works
+```
+#### 3. Chao1
+```
+cc9<-Chao1_spName (t500_spp) # Not working
+cc10<-Chao1_SEvent (t500_spp) # This works
+```
+
 ```
 # NOT WORKING:
 SACcomplet_SEvent_MM <- function(matriz)
